@@ -1,14 +1,20 @@
 package br.univille.projetoquiz.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Rank {
+    @Id
+    private long id;
     private int pontuacao;
     @ManyToMany
-    private Usuario ranque;
+    private List<Usuario> listaUsuarios = new ArrayList<>();;
     @OneToOne
     private Quiz score;
     
@@ -21,13 +27,7 @@ public class Rank {
         this.pontuacao = pontuacao;
     }
 
-    public Usuario getRanque() {
-        return ranque;
-    }
-
-    public void setRanque(Usuario ranque) {
-        this.ranque = ranque;
-    }
+    
 
     public Quiz getScore() {
         return score;
@@ -35,6 +35,22 @@ public class Rank {
 
     public void setScore(Quiz score) {
         this.score = score;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
     
 }
