@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.univille.projetoquiz.entity.Usuario;
+
 import br.univille.projetoquiz.service.UsuarioService;
 
 @Service
