@@ -3,6 +3,8 @@ package br.univille.projetoquiz.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+
 @Entity
 public class Perguntas {
     @Id
@@ -10,6 +12,7 @@ public class Perguntas {
     private String pergunta;
     private boolean alternativa;
     private int resposta;
+    
     public String getPergunta() {
         return pergunta;
     }
