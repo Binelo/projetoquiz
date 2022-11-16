@@ -1,17 +1,23 @@
 package br.univille.projetoquiz.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
 @Entity
 public class Quiz {
+    @Id
+    private long id;
     private String nome;
     @ManyToOne
     private Usuario quiz;
     @OneToMany
-    private Perguntas perguntas;
+    private List<Perguntas> listaPerguntas = new ArrayList<>();
 
     
     public String getNome() {
@@ -26,11 +32,19 @@ public class Quiz {
     public void setQuiz(Usuario quiz) {
         this.quiz = quiz;
     }
-    public Perguntas getPerguntas() {
-        return perguntas;
+    public long getId() {
+        return id;
     }
-    public void setPerguntas(Perguntas perguntas) {
-        this.perguntas = perguntas;
+    public void setId(long id) {
+        this.id = id;
     }
+    public List<Perguntas> getListaPerguntas() {
+        return listaPerguntas;
+    }
+    public void setListaPerguntas(List<Perguntas> listaPerguntas) {
+        this.listaPerguntas = listaPerguntas;
+    }
+    
+    
     
 }
