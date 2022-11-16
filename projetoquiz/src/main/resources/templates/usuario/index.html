@@ -6,16 +6,27 @@
     <nav th:replace="layout :: menu"></nav>
     <main class="container">
         <a href="/usuario/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabusuarios">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Apelido</th>
-                        <th></th>
-                    </tr>
-                </thead>
-        
+        <table class="table" id="tabusuarios">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="umUsuario : ${listaUsuarios}">
+                    <td th:text="${umUsuario.id}"></td>
+                    <td th:text="${umUsuario.nome}"></td>
+                    <td th:text="${umUsuario.apelido}"></td>>
+                    </td>
+                    <td>
+                        <a th:href="@{'/usuarios/alterar/' + ${umUsuario.id}}" class="btn btn-warning">Alterar</a>
+                    </td>
+                </tr>
+            </tbody>
+
     </main>
     <footer th:include="layout :: footer"></footer>
 </body>

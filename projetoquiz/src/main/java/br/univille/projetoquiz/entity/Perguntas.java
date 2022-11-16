@@ -2,11 +2,14 @@ package br.univille.projetoquiz.entity;
 
 import javax.persistence.Entity;
 
+
+
 @Entity
 public class Perguntas {
     private String pergunta;
     private boolean alternativa;
     private int resposta;
+    
     public String getPergunta() {
         return pergunta;
     }
