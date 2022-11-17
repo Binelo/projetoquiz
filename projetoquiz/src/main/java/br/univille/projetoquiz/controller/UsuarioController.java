@@ -16,8 +16,7 @@ public class UsuarioController {
 
 @Autowired
 private UsuarioService service;
-@Autowired
-private UsuarioService usuarioService;
+
 
 @GetMapping
 public ModelAndView index(){
