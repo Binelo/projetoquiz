@@ -3,6 +3,8 @@ package br.univille.projetoquiz.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +33,19 @@ public ModelAndView novo(){
     var novoUsuario = new Usuario();
     return new ModelAndView("usuario/form","usuario",novoUsuario);
 }
+@PostMapping(params = "form")
+    public ModelAndView save(Usuario usuario){
 
+        service.save(usuario);
+        
+        return new ModelAndView("redirect:/usuarios");
+    }
+    @GetMapping("/alterar/{id}")
+    public ModelAndView alterar(@PathVariable("id") long id){
+        
+        var umUsuario = service.findById(id);
+        return new ModelAndView("usuario/form",
+                                "usuario",umUsuario);
+    }
     
 }
