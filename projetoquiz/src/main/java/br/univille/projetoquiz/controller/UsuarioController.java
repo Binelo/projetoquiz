@@ -47,5 +47,13 @@ public ModelAndView novo(){
         return new ModelAndView("usuario/form",
                                 "usuario",umUsuario);
     }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") long id){
+
+        service.delete(id);
+
+        return new ModelAndView("redirect:/usuarios");
+    }
     
 }
