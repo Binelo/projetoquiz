@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <form th:action="@{/quiz/(form)}" method="POST" th:object="${Perguntas}">
+
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="txtpergunta">Pergunta:</label>
+                <input type="text" th:field="*{pergunta}" class="form-control" id="txtpergunta">
+            </div>
+
+            
+                
+        </form>
+    </main>
+    <footer th:include="layout :: footer"></footer>
+</body>
+
+</html>

@@ -9,7 +9,7 @@
         <form th:action="@{/quiz/(form)}" method="POST" th:object="${quiz}">
 
             <input type="hidden" th:field="*{id}">
-
+            <a href="/perguntas" class="btn btn-primary">Nova Pergunta</a>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -19,8 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Pergunta</th>
-                                <th>Quantidade</th>
-                                <th>Valor</th>
+                                <th>Alternativa</th>
                                 <th></th>
                             </tr>
                         </thead>
