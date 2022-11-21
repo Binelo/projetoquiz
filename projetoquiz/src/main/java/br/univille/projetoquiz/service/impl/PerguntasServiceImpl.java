@@ -20,5 +20,11 @@ public class PerguntasServiceImpl implements PerguntasService{
         
         return repositorio.findAll();
     }
+
+    @Override
+    public Perguntas save(Perguntas perguntas) {
+        
+        return repositorio.save(perguntas);
+    }
     
 }
