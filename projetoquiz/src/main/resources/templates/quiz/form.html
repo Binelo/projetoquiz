@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <form th:action="@{/quiz/(form)}" method="POST" th:object="${quiz}">
+
+            <input type="hidden" th:field="*{id}">
+            <a href="/pergunta" class="btn btn-primary">Nova Pergunta</a>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Perguntas
+                    </h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Pergunta</th>
+                                <th>Alternativa</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="umQuiz, stat : *{listaPerguntas}">
+                                <td th:text="${umQuiz.perguntas?.pergunta}"></td>
+                                <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].pergunta}">
+                                <td th:text="${umQuiz.perguntas?.alternativa}"></td>
+                                <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].alternativa}">
+                                <td>
+                                    <button class="btn btn-danger" type="submit" name="removeitem"
+                                        th:value="__${stat.index}__">Remover</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <button type="submit" 
+                    class="btn btn-primary">Enviar</button>
+        </form>
+    </main>
+    <footer th:include="layout :: footer"></footer>
+</body>
+
+</html>

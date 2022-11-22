@@ -1,12 +1,21 @@
 package br.univille.projetoquiz.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
 
 @Entity
 public class Perguntas {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String pergunta;
     private boolean alternativa;
     private int resposta;
+    
     public String getPergunta() {
         return pergunta;
     }
@@ -24,6 +33,12 @@ public class Perguntas {
     }
     public void setResposta(int resposta) {
         this.resposta = resposta;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
     
 
