@@ -14,6 +14,28 @@
                 <input type="text" class="form-control"
                     id="txtpergunta" th:field="*{pergunta}">
             </div>
+            <div class="form-group">
+                <label for="alterar">Alternativa:</label>
+                <select class="form-select" id="alterar" th:field="${pergunta.alternativa}">
+                    <option th:value="true">Verdadeiro
+                    </option>
+                    <option th:value="false">Falso
+                    </option>
+                </select>
+                </div>
+            
+            
+            
+            
+            
+            <!-- <div class="form-group">
+                <input type="checkbox" id="booleanalternativa" th:field="*{pergunta}">
+                <label for="booleanalternativa">Verdadeiro</label><br>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="booleanalternativa" th:field="*{pergunta}">
+                <label for="booleanalternativa">falso</label><br>
+            </div> -->
 
             
             <button type="submit" 

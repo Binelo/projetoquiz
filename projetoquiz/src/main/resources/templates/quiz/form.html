@@ -24,8 +24,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="umQuiz, stat : *{listaPerguntas}">
-                                <td th:text="${umQuiz.perguntas?.pergunta}"></td>
+                            <tr th:each="umaPergunta, stat : *{listaPerguntas}">
+                                <td th:text="${umaPergunta.pergunta}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].pergunta}">
                                 <td th:text="${umQuiz.perguntas?.alternativa}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].alternativa}">
