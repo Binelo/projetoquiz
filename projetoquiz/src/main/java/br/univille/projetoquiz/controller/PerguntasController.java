@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,8 +27,15 @@ public class PerguntasController {
     public ModelAndView novo() {
         var novasPerguntas = new Perguntas();
         HashMap<String, Object> dados = new HashMap<>();
-        dados.put("perguntas", novasPerguntas);
+        dados.put("pergunta", novasPerguntas);
         dados.put("novaPergunta", new Perguntas());
         return new ModelAndView("pergunta/form", dados);
+    }
+    @PostMapping(params = "form")
+    public ModelAndView save(Perguntas perguntas){
+
+        service.save(perguntas);
+        
+        return new ModelAndView("redirect:/pergunta");
     }
 }
