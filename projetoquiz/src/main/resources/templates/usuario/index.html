@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="layout :: head"></head>
+
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <a href="/usuarios/novo" class="btn btn-primary">Novo</a>
+        <table class="table" id="tabusuarios">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="umUsuario : ${listaUsuarios}">
+                    <td th:text="${umUsuario.id}"></td>
+                    <td th:text="${umUsuario.nome}"></td>
+                    <td th:text="${umUsuario.apelido}"></td>>
+                    <td>
+                        <a th:href="@{'/usuarios/alterar/' + ${umUsuario.id}}" class="btn btn-warning">Alterar</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umUsuario.id}">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+
+    </main>
+    <div class="modal" tabindex="-1" id="modalusuario">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Confirma a exclusão do usuário?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script.js}"></script>
+</body>
+
+</html>
