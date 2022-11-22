@@ -7,13 +7,26 @@
     <main class="container">
         <a href="/pergunta/novo" class="btn btn-primary">Novo</a>
         
-            <table class="table" id="tabquiz">
+            <table class="table" id="tabpergunta">
                 <thead>
                     <tr>
-                <th>Nome</th>
+                        <th>Id</th>
+                        <th>Pergunta</th>
+                        <th>Alternativa</th>
                         <th></th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr th:each="umaPergunta : ${listaPerguntas}">
+                        <td th:text="${umaPergunta.id}"></td>
+                        <td th:text="${umaPergunta.pergunta}"></td>
+                        
+                        <td>
+                            <a th:href="@{'/pergunta/alterar/' + ${umaPergunta.id}}" class="btn btn-warning">Alterar</a>
+                            <button class="btn btn-danger js-delete" th:data-id="${umaPergunta.id}">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
         
     </main>
     <footer th:include="layout :: footer"></footer>
