@@ -24,8 +24,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="umQuiz, stat : *{listaPerguntas}">
-                                <td th:text="${umQuiz.perguntas?.pergunta}"></td>
+                            <tr th:each="umaPergunta, stat : *{listaPerguntas}">
+                                <td th:text="${umaPergunta.pergunta?.pergunta}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].pergunta}">
                                 <td th:text="${umQuiz.perguntas?.alternativa}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].alternativa}">
@@ -39,7 +39,29 @@
                 </div>
             </div>
             <div class="card">
-                <button type="submit" 
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Perguntas
+                    </h5>
+                    <div class="form-group">
+                        <label for="txtpergunta">Pergunta:</label>
+                        <input type="text" class="form-control"
+                            id="txtpergunta" th:field="${novaPergunta.pergunta}">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtalternativa">Alternativa:</label>
+                        <select class="form-select" id="txtalternativa" th:field="${novaPergunta.alternativa}">
+                            <option th:value="true">Verdadeiro
+                            </option>
+                            <option th:value="false">Falso
+                            </option>
+                        </select>
+                        </div>
+                    
+                    <button type="submit" name="incperg" class="btn btn-primary">Adicionar Pergunta</button>
+                </div>
+            </div>
+            <button type="submit" name="save"
                     class="btn btn-primary">Enviar</button>
         </form>
     </main>

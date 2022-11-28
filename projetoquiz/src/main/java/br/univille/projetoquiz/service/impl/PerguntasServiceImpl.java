@@ -26,5 +26,18 @@ public class PerguntasServiceImpl implements PerguntasService{
         
         return repositorio.save(perguntas);
     }
+    @Override
+    public void delete(long id) {
+        repositorio.deleteById(id);
+        
+    }
+    @Override
+    public Perguntas findById(long id) {
+        var resultado = repositorio.findById(id);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        return new Perguntas();
+    }
     
 }

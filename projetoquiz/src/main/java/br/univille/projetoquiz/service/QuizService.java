@@ -6,4 +6,5 @@ import br.univille.projetoquiz.entity.Quiz;
 
 public interface QuizService {
     List<Quiz> getAll();
+    Quiz save(Quiz quiz);
 }

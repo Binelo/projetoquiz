@@ -1,10 +1,12 @@
 package br.univille.projetoquiz.controller;
 
 import java.util.HashMap;
-
+// import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +29,12 @@ public class QuizController {
         return new ModelAndView("quiz/index",
                 "listaQuizes", listaQuizes);
     }
+    @PostMapping(params = "save")
+    public ModelAndView save(Quiz quiz,
+            BindingResult bindingResult) {
+        service.save(quiz);
+        return new ModelAndView("redirect:/quiz");
+    }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
@@ -38,4 +46,16 @@ public class QuizController {
         dados.put("novaPergunta", new Perguntas());
         return new ModelAndView("quiz/form", dados);
     }
+    @PostMapping(params = "incperg")
+    public ModelAndView incluirPergunta(Quiz quiz,
+            Perguntas novaPergunta) {
+        quiz.getListaPerguntas().add(novaPergunta);
+
+        var listaPerguntas = perguntasService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("quiz", quiz);
+        dados.put("listaPerguntas", listaPerguntas);
+        dados.put("novaPergunta", new Perguntas());
+        return new ModelAndView("quiz/form", dados);
+}
 }
