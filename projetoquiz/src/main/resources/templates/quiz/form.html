@@ -9,7 +9,7 @@
         <form th:action="@{/quiz/(form)}" method="POST" th:object="${quiz}">
 
             <input type="hidden" th:field="*{id}">
-            <a href="/pergunta" class="btn btn-primary">Nova Pergunta</a>
+            <!-- <a href="/pergunta" class="btn btn-primary">Nova Pergunta</a> -->
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -25,12 +25,12 @@
                         </thead>
                         <tbody>
                             <tr th:each="umaPergunta, stat : *{listaPerguntas}">
-                                <td th:text="${umaPergunta.pergunta?.pergunta}"></td>
+                                <td th:text="${umaPergunta?.pergunta}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].pergunta}">
-                                <td th:text="${umQuiz.perguntas?.alternativa}"></td>
+                                <td th:text="${umaPergunta?.alternativa}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].alternativa}">
                                 <td>
-                                    <button class="btn btn-danger" type="submit" name="removeitem"
+                                    <button class="btn btn-danger" type="submit" name="removepergunta"
                                         th:value="__${stat.index}__">Remover</button>
                                 </td>
                             </tr>
@@ -57,9 +57,8 @@
                             </option>
                         </select>
                         </div>
-                    
-                    <button type="submit" name="incperg" class="btn btn-primary">Adicionar Pergunta</button>
                 </div>
+                <button type="submit" name="incperg" class="btn btn-primary">Adicionar Pergunta</button>
             </div>
             <button type="submit" name="save"
                     class="btn btn-primary">Enviar</button>

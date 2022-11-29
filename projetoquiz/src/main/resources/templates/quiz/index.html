@@ -10,13 +10,26 @@
             <table class="table" id="tabquiz">
                 <thead>
                     <tr>
-                <th>Nome</th>
-                        <th></th>
-                        
+                      <th>Id</th>
+                      <th>Perguntas:</th>
+                      <th>alternativa</th>
+                      <th></th>
                     </tr>
-                </thead>
-        
-    </main>
+                  </thead>
+                  <tbody>
+                    <!-- erro -->
+                    <tr th:each="umQuiz : ${listaQuizes}">
+                      <td th:text="${umQuiz.id}"></td>
+                      <td th:text="${umQuiz.listaPerguntas}"></td>
+                      <td th:text="${umQuiz.alternativa}"></td>
+                      <td>
+                        <a th:href="@{'/quiz/alterar/' + ${umQuiz.id}}" class="btn btn-warning">Alterar</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${umQuiz.id}">Excluir</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </main>
     <footer th:include="layout :: footer"></footer>
 </body>
 
