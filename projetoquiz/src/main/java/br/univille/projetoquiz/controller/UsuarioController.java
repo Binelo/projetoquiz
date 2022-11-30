@@ -1,11 +1,20 @@
 package br.univille.projetoquiz.controller;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.projetoquiz.entity.Usuario;
@@ -52,8 +61,25 @@ public ModelAndView novo(){
     public ModelAndView delete(@PathVariable("id") long id){
 
         service.delete(id);
+        
 
         return new ModelAndView("redirect:/usuarios");
     }
+    @GetMapping("/utilizar/{id}")
+    public ModelAndView utilizar(@PathVariable("id")long id){
+
+        return null;
+    }
+    /* 
+    @GetMapping("/utilizar/{id}")
+    public @ResponseBody Usuario<List> getMessage(Model model, HttpSession session) {
+        List greetings = (List) session.getAttribute("GREETING_MESSAGES");
+        if(greetings == null) {
+            greetings = new ArrayList<>();
+        }
+
+        return new ResponseEntity<List>(greetings,HttpStatus.OK);
+    }
+    */
     
 }
