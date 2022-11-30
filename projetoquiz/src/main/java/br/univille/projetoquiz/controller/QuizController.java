@@ -26,8 +26,11 @@ public class QuizController {
     @GetMapping
     public ModelAndView index() {
         var listaQuizes = service.getAll();
-        return new ModelAndView("quiz/index",
-                "listaQuizes", listaQuizes);
+        var listaPerguntas = perguntasService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaQuizes", listaQuizes);
+        dados.put("listaPerguntas", listaPerguntas);
+        return new ModelAndView("quiz/index", dados);
     }
     @PostMapping(params = "save")
     public ModelAndView save(Quiz quiz,

@@ -12,7 +12,7 @@
                     <tr>
                       <th>Id</th>
                       <th>Perguntas:</th>
-                      <th>alternativa</th>
+                      
                       <th></th>
                     </tr>
                   </thead>
@@ -20,8 +20,14 @@
                     <!-- erro -->
                     <tr th:each="umQuiz : ${listaQuizes}">
                       <td th:text="${umQuiz.id}"></td>
-                      <td th:text="${umQuiz.listaPerguntas}"></td>
-                      <td th:text="${umQuiz.alternativa}"></td>
+                      <td><div class="form-group">
+                        <label>Perguntas</label>
+                        <select class="form-select" th:field="${umQuiz.listaPerguntas}">
+                            <option th:each="umaPergunta : ${listaPerguntas}" th:text="${umaPergunta.pergunta}"
+                                th:value="${umaPergunta.id}"></option>
+                        </select>
+                    </div>
+                  </td>
                       <td>
                         <a th:href="@{'/quiz/alterar/' + ${umQuiz.id}}" class="btn btn-warning">Alterar</a>
                         <button class="btn btn-danger js-delete" th:data-id="${umQuiz.id}">Excluir</button>
