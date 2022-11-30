@@ -22,7 +22,7 @@
                       <td th:text="${umQuiz.id}"></td>
                       <td><div class="form-group">
                         <label>Perguntas</label>
-                        <select class="form-select" th:field="${umQuiz.listaPerguntas}">
+                        <select class="form-select" >
                             <option th:each="umaPergunta : ${listaPerguntas}" th:text="${umaPergunta.pergunta}"
                                 th:value="${umaPergunta.id}"></option>
                         </select>
