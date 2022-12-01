@@ -34,7 +34,6 @@ public class PerguntasController {
     }
     @PostMapping(params = "form")
     public ModelAndView save(Perguntas perguntas){
-
         service.save(perguntas);
         
         return new ModelAndView("redirect:/pergunta");
