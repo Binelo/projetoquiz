@@ -25,5 +25,18 @@ public class QuizServiceImpl implements QuizService{
         
         return repositorio.save(quiz);
     }
+    @Override
+    public void delete(long id) {
+        repositorio.deleteById(id);
+        
+    }
+    @Override
+    public Quiz findById(long id) {
+        var resultado = repositorio.findById(id);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        return new Quiz();
+    }
     
 }

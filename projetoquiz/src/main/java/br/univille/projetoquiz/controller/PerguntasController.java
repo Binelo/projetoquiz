@@ -34,7 +34,9 @@ public class PerguntasController {
     }
     @PostMapping(params = "form")
     public ModelAndView save(Perguntas perguntas){
-
+        // if (service.getAll().contains(perguntas)) {
+        //     service.delete(perguntas.getId());
+        // }
         service.save(perguntas);
         
         return new ModelAndView("redirect:/pergunta");

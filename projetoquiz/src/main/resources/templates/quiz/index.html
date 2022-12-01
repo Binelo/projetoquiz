@@ -11,32 +11,53 @@
                 <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Perguntas:</th>
+                      <th>Nome</th>
                       
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- erro -->
+                    
                     <tr th:each="umQuiz : ${listaQuizes}">
                       <td th:text="${umQuiz.id}"></td>
-                      <td><div class="form-group">
+                      <td th:text="${umQuiz.nome}"></td>
+                      
+                        
+                        <!-- <div class="form-group">
                         <label>Perguntas</label>
                         <select class="form-select" >
                             <option th:each="umaPergunta : ${listaPerguntas}" th:text="${umaPergunta.pergunta}"
                                 th:value="${umaPergunta.id}"></option>
                         </select>
-                    </div>
-                  </td>
+                    </div> -->
+                  
                       <td>
-                        <a th:href="@{'/quiz/alterar/' + ${umQuiz.id}}" class="btn btn-warning">Alterar</a>
+                        <a th:href="@{'/quiz/alterar/' + ${umQuiz.id}}" class="btn btn-warning">Alterar/Visualizar</a>
                         <button class="btn btn-danger js-delete" th:data-id="${umQuiz.id}">Excluir</button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
             </main>
+            <div class="modal" tabindex="-1" id="modalquiz">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Excluir quiz?</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Confirma a exclusão do quiz?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                      <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                  </div>
+                  </div>
+              </div>
+          </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script.js}"></script>
 </body>
 
 </html>
