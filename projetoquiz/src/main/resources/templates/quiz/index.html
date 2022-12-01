@@ -34,6 +34,7 @@
                       <td>
                         <a th:href="@{'/quiz/alterar/' + ${umQuiz.id}}" class="btn btn-warning">Alterar/Visualizar</a>
                         <button class="btn btn-danger js-delete" th:data-id="${umQuiz.id}">Excluir</button>
+                        <a href="@{'quiz/jogar/' + ${umQuiz.id}}" class="btn btn-success">Jogar</a>
                       </td>
                     </tr>
                   </tbody>

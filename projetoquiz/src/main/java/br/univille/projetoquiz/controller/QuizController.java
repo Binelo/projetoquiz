@@ -95,4 +95,13 @@ public class QuizController {
         dados.put("novaPergunta", new Perguntas());
         return new ModelAndView("quiz/form", dados);
     }
+    @GetMapping("/jogar/{id}")
+    public ModelAndView jogar(){
+        var listaQuizes = service.getAll();
+        var listaPerguntas = perguntasService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaQuizes", listaQuizes);
+        dados.put("listaPerguntas", listaPerguntas);
+        return new ModelAndView("quiz/jogar", dados);
+    }
 }
