@@ -9,28 +9,34 @@
         <form th:action="@{/quiz/(form)}" method="POST" th:object="${quiz}">
 
             <input type="hidden" th:field="*{id}">
-            <a href="/pergunta" class="btn btn-primary">Nova Pergunta</a>
+            
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        Perguntas
+                        Quiz
                     </h5>
                     <table class="table">
                         <thead>
                             <tr>
+                                
                                 <th>Pergunta</th>
                                 <th>Alternativa</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            <div class="form-group">
+                                <label for="txtNome">Nome do Quiz:</label>
+                                <input type="text" class="form-control"
+                                    id="txtNome" th:field="*{nome}">
+                            </div>
                             <tr th:each="umaPergunta, stat : *{listaPerguntas}">
-                                <td th:text="${umaPergunta.pergunta}"></td>
+                                <td th:text="${umaPergunta?.pergunta}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].pergunta}">
-                                <td th:text="${umQuiz.perguntas?.alternativa}"></td>
+                                <td th:text="${umaPergunta?.alternativa}"></td>
                                 <input type="hidden" th:field="*{listaPerguntas[__${stat.index}__].alternativa}">
                                 <td>
-                                    <button class="btn btn-danger" type="submit" name="removeitem"
+                                    <button class="btn btn-danger" type="submit" name="removepergunta"
                                         th:value="__${stat.index}__">Remover</button>
                                 </td>
                             </tr>
@@ -39,7 +45,39 @@
                 </div>
             </div>
             <div class="card">
-                <button type="submit" 
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Perguntas
+                    </h5>
+                    <a href="/pergunta" class="btn btn-primary">Nova Pergunta</a>
+                    <div class="form-group">
+                        <label for="cbpergunta">Pergunta:</label>
+                        <select class="form-select" id="cbpergunta" th:field="${novaPergunta.pergunta}">
+                            <option th:each="umaPergunta : ${listaPerguntas}" th:value="${umaPergunta.pergunta}"
+                                th:text="${umaPergunta.pergunta}">
+                                
+                            </option>
+                            
+                        </select>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="txtpergunta">Pergunta:</label>
+                        <input type="text" class="form-control"
+                            id="txtpergunta" th:field="${novaPergunta.pergunta}">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="txtalternativa">Alternativa:</label>
+                        <select class="form-select" id="txtalternativa" th:field="${novaPergunta.alternativa}">
+                            <option th:value="true">Verdadeiro
+                            </option>
+                            <option th:value="false">Falso
+                            </option>
+                        </select>
+                        </div>
+                </div>
+                <button type="submit" name="incperg" class="btn btn-primary">Adicionar Pergunta</button>
+            </div>
+            <button type="submit" name="save"
                     class="btn btn-primary">Enviar</button>
         </form>
     </main>
