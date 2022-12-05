@@ -65,21 +65,18 @@ public ModelAndView novo(){
 
         return new ModelAndView("redirect:/usuarios");
     }
-    @GetMapping("/utilizar/{id}")
-    public ModelAndView utilizar(@PathVariable("id")long id){
+   @GetMapping("/usuarios/{id}")
+   public ModelAndView utilizar(@PathVariable("id") long id){
 
-        return null;
-    }
-    /* 
-    @GetMapping("/utilizar/{id}")
-    public @ResponseBody Usuario<List> getMessage(Model model, HttpSession session) {
-        List greetings = (List) session.getAttribute("GREETING_MESSAGES");
-        if(greetings == null) {
-            greetings = new ArrayList<>();
-        }
+    var umUsuario=service.findById(id);
+    
+    return new ModelAndView("usuario/form",
+                                "usuario",umUsuario);
 
-        return new ResponseEntity<List>(greetings,HttpStatus.OK);
-    }
-    */
+
+
+   }
+    
+    
     
 }
