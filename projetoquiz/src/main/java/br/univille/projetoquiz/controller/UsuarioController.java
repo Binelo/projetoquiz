@@ -57,25 +57,23 @@ public ModelAndView novo(){
                                 "usuario",umUsuario);
     }
 
+    @GetMapping("/utilizar/{id}")
+    public ModelAndView utilizar(@PathVariable("id") long id){
+
+
+        var umUsuario = service.findById(id);
+       
+
+        return new ModelAndView("quiz/index","usuario",umUsuario);
+    }
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id){
 
         service.delete(id);
-        
 
         return new ModelAndView("redirect:/usuarios");
     }
-   @GetMapping("/usuarios/{id}")
-   public ModelAndView utilizar(@PathVariable("id") long id){
-
-    var umUsuario=service.findById(id);
-    
-    return new ModelAndView("usuario/form",
-                                "usuario",umUsuario);
-
-
-
-   }
+   
     
     
     
