@@ -20,16 +20,38 @@
                     <tr th:each="umaPergunta : ${listaPerguntas}">
                         <td th:text="${umaPergunta.id}"></td>
                         <td th:text="${umaPergunta.pergunta}"></td>
+                        <td th:text="${umaPergunta.alternativa}"></td>
                         
                         <td>
                             <a th:href="@{'/pergunta/alterar/' + ${umaPergunta.id}}" class="btn btn-warning">Alterar</a>
                             <button class="btn btn-danger js-delete" th:data-id="${umaPergunta.id}">Excluir</button>
+                            
+                            
                         </td>
                     </tr>
                 </tbody>
+                <a href="/quiz" class="btn btn-primary">Quiz</a>
         
     </main>
+    <div class="modal" tabindex="-1" id="modalpergunta">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir pergunta?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Confirma a exclusão da pergunta?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <footer th:include="layout :: footer"></footer>
+    <script th:src="@{/script.js}"></script>
 </body>
 
 </html>

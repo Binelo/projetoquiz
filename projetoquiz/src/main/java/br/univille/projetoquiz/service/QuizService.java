@@ -6,4 +6,8 @@ import br.univille.projetoquiz.entity.Quiz;
 
 public interface QuizService {
     List<Quiz> getAll();
+    Quiz save(Quiz quiz);
+    void delete(long id);
+    Quiz findById(long id);
+    
 }
