@@ -9,4 +9,5 @@ public interface QuizService {
     Quiz save(Quiz quiz);
     void delete(long id);
     Quiz findById(long id);
+    
 }

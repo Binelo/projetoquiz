@@ -1,40 +1,34 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:fragment="head">
-  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}">
-  <title>Document</title>
-</head>
+<head th:include="layout :: head"></head>
 
 <body>
-  <nav th:fragment="menu" class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/home">Quiz</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuarios">Usuários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/quiz">Quizes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/rank">Rank</a>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <footer th:fragment="footer">
-    <script th:src="@{/webjars/jquery/3.6.1/dist/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
-  </footer>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+      <table class="table" id="tabquiz">
+        <thead>
+          <tr>
+            <th>Pergunta</th>
+  
+            <th>Resposta</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+  
+          <tr th:each="umaPergunta : ${listaPerguntas}">
+            <td th:text="${umaPergunta.pergunta}"></td>
+            <td>
+              <!-- aqui -->
+              <a th:href="@{'/alternativa/' + '${umaPergunta.alternativa}'}" class="btn btn-success">Verdadeiro</a>
+              <a th:href="@{'/alternativa/' + '${umaPergunta.id}' + '${umaPergunta.alternativa}'}" class="btn btn-danger">Falso</a>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <footer th:include="layout :: footer"></footer>
 </body>
 
 </html>

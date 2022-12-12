@@ -86,6 +86,7 @@ public class QuizController {
     public ModelAndView removerPergunta(@RequestParam("removepergunta") int index,
             Quiz quiz) {
         quiz.getListaPerguntas().remove(index);
+        perguntasService.delete(index);
 
         
         var listaPerguntas = perguntasService.getAll();
@@ -99,6 +100,18 @@ public class QuizController {
     public ModelAndView jogar(){
         var listaQuizes = service.getAll();
         var listaPerguntas = perguntasService.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaQuizes", listaQuizes);
+        dados.put("listaPerguntas", listaPerguntas);
+        return new ModelAndView("quiz/jogar", dados);
+    }
+    //aqui
+    @GetMapping("/alternativa/{alternativa}")
+    public ModelAndView alternativa(@PathVariable("alternativa") boolean alternativa){
+        var listaPerguntas = perguntasService.getAll();
+        var listaQuizes = service.getAll();
+        
+        
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("listaQuizes", listaQuizes);
         dados.put("listaPerguntas", listaPerguntas);
